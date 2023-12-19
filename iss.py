@@ -18,12 +18,14 @@ def iss_map():
         lat = float(iss_pos['latitude'])
         
         fig = plt.figure(figsize=(8, 8))
-        ax = plt.axes(projection=ccrs.Orthographic(central_longitude=lon, central_latitude=lat))
-        ax.coastlines()
-        ax.gridlines(draw_labels=False)
+        ax = plt.axes(projection=ccrs.PlateCarree())
+        ax.stock_img()
+        # ax.plot(lon, lat, 'ro', markersize=10, transform=ccrs.PlateCarree()) 
+        plt.plot(lon, lat, color='blue', marker='o')
+        # ax.coastlines()
+        # ax.gridlines(draw_labels=False)
         ax.set_title("Current position of the ISS")
         plt.show() 
-        ax.plot(lon, lat, 'ro', markersize=10, transform=ccrs.PlateCarree()) 
         
     else:
         print("Couldn't get information about the ISS position")
